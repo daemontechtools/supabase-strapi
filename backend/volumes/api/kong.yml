@@ -6,10 +6,10 @@ _format_version: "1.1"
 consumers:
   - username: anon
     keyauth_credentials:
-      - key: ${ANON_KEY}
+      - key: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.ewogICAgInJvbGUiOiAiYW5vbiIsCiAgICAiaXNzIjogInN1cGFiYXNlIiwKICAgICJpYXQiOiAxNjc2MzUwODAwLAogICAgImV4cCI6IDE4MzQxMTcyMDAKfQ.BIm8lU0weXnCIYl7H4UNv5bUwUoT8YTqAcEUefLiT4U
   - username: service_role
     keyauth_credentials:
-      - key: ${SERVICE_ROLE_KEY}
+      - key: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.ewogICAgInJvbGUiOiAic2VydmljZV9yb2xlIiwKICAgICJpc3MiOiAic3VwYWJhc2UiLAogICAgImlhdCI6IDE2NzYzNTA4MDAsCiAgICAiZXhwIjogMTgzNDExNzIwMAp9.3Ss_ANUkd1vznrNWctlWGXKuWtEy8Jf6Bj9U45uWfy4
 
 ###
 ### Access Control List
