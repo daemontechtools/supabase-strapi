@@ -206,6 +206,34 @@ services:
       PG_META_DB_USER: supabase_admin
       PG_META_DB_PASSWORD: ${POSTGRES_PASSWORD}
 
+  strapi:
+    container_name: strapi
+    build: .
+    image: strapi:latest
+    depends_on:
+      db: # Disable this if you are using an external Postgres database
+        condition: service_healthy
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      DATABASE_CLIENT: ${STRAPI_DATABASE_CLIENT}
+      DATABASE_HOST: ${POSTGRES_HOST}
+      DATABASE_NAME: ${POSTGRES_DB}
+      DATABASE_USERNAME: supabase_admin
+      DATABASE_PORT: ${POSTGRES_PORT}
+      JWT_SECRET: ${STRAPI_JWT_SECRET}
+      ADMIN_JWT_SECRET: ${STRAPI_ADMIN_STRAPI_JWT_SECRET}
+      DATABASE_PASSWORD: ${POSTGRES_PASSWORD}
+      NODE_ENV: ${NODE_ENV}
+    volumes:
+      - ./cms/config:/opt/app/config
+      - ./cms/src:/opt/app/src
+      - ./cms/package.json:/opt/package.json
+      - ./.env:/opt/app/.env
+      - ./cms/public/uploads:/opt/app/public/uploads
+    ports:
+      - '${STRAPI_PORT}:${STRAPI_PORT}'
+
   # Comment out everything below this point if you are using an external Postgres database
   db:
     container_name: supabase-db
