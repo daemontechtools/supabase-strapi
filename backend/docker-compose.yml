@@ -46,7 +46,7 @@ services:
       KONG_NGINX_PROXY_PROXY_BUFFER_SIZE: 160k
       KONG_NGINX_PROXY_PROXY_BUFFERS: 64 160k
     volumes:
-      - ./volumes/api:/var/lib/kong:ro
+      - ./supabase/volumes/api:/var/lib/kong:ro
 
   auth:
     container_name: supabase-auth
@@ -174,7 +174,7 @@ services:
       ENABLE_IMAGE_TRANSFORMATION: "true"
       IMGPROXY_URL: http://imgproxy:5001
     volumes:
-      - ./volumes/storage:/var/lib/storage
+      - ./supabase/volumes/storage:/var/lib/storage
 
   imgproxy:
     container_name: supabase-imgproxy
@@ -189,7 +189,7 @@ services:
       IMGPROXY_LOCAL_FILESYSTEM_ROOT: /
       IMGPROXY_USE_ETAG: "true"
     volumes:
-      - ./volumes/storage:/var/lib/storage
+      - ./supabase/volumes/storage:/var/lib/storage
 
   meta:
     container_name: supabase-meta
@@ -208,7 +208,7 @@ services:
 
   strapi:
     container_name: strapi
-    build: .
+    build: ./strapi
     image: strapi:latest
     depends_on:
       db: # Disable this if you are using an external Postgres database
@@ -226,11 +226,11 @@ services:
       DATABASE_PASSWORD: ${POSTGRES_PASSWORD}
       NODE_ENV: ${NODE_ENV}
     volumes:
-      - ./cms/config:/opt/app/config
-      - ./cms/src:/opt/app/src
-      - ./cms/package.json:/opt/package.json
+      - ./strapi/config:/opt/app/config
+      - ./strapi/src:/opt/app/src
+      - ./strapi/package.json:/opt/package.json
       - ./.env:/opt/app/.env
-      - ./cms/public/uploads:/opt/app/public/uploads
+      - ./strapi/public/uploads:/opt/app/public/uploads
     ports:
       - '${STRAPI_PORT}:${STRAPI_PORT}'
 
@@ -262,8 +262,8 @@ services:
       PGDATABASE: ${POSTGRES_DB}
       POSTGRES_DB: ${POSTGRES_DB}
     volumes:
-      - ./volumes/db/realtime.sql:/docker-entrypoint-initdb.d/realtime.sql
-      - ./volumes/db/roles.sql:/docker-entrypoint-initdb.d/roles.sql
+      - ./supabase/volumes/db/realtime.sql:/docker-entrypoint-initdb.d/realtime.sql
+      - ./supabase/volumes/db/roles.sql:/docker-entrypoint-initdb.d/roles.sql
       # Must be superuser to enable pg_net extension
-      - ./volumes/db/webhooks.sql:/etc/postgresql.schema.sql
-      - ./volumes/db/data:/var/lib/postgresql/data
+      - ./supabase/volumes/db/webhooks.sql:/etc/postgresql.schema.sql
+      - ./supabase/volumes/db/data:/var/lib/postgresql/data

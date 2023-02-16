@@ -1,0 +1,20 @@
+{
+  "name": "supabase-strapi",
+  "version": "0.0.1",
+  "description": "A template project with Supabase and Strapi",
+  "main": "index.js",
+  "scripts": {
+    "start:backend": "docker compose -f backend/docker-compose.yml up",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/daemonweb/supabase-cms.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/daemonweb/supabase-cms/issues"
+  },
+  "homepage": "https://github.com/daemonweb/supabase-cms#readme"
+}

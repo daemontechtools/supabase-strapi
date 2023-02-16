@@ -5,11 +5,11 @@ RUN apk update && apk add --no-cache build-base gcc autoconf automake zlib-dev l
 ARG NODE_ENV=development
 ENV NODE_ENV=${NODE_ENV}
 WORKDIR /opt/
-COPY ./cms/package.json ./cms/package-lock.json ./
+COPY ./package.json ./package-lock.json ./
 ENV PATH /opt/node_modules/.bin:$PATH
 RUN npm install
 WORKDIR /opt/app
-COPY ./cms .
+COPY ./ .
 RUN npm run build
 EXPOSE ${STRAPI_PORT}
 CMD ["npm", "run", "develop"]

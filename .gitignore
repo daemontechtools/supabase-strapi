@@ -236,3 +236,10 @@ exports
 dist
 build
 .strapi-updater.json
+
+############################
+# Supabase
+############################
+
+supabase/volumes/db/data
+supabase/volumes/storage
