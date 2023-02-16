@@ -11,12 +11,3 @@ export default ({ env }) => ({
     },
   },
 });
-
-// client: "postgres",
-// connection: {
-//   host: "db",
-//   port: 5432,
-//   database: "postgres",
-//   user: "supabase_admin",
-//   password: "nkkBgrN9pZdznihMFRWZoKzCRCNC3HKKw83xfxTcoKs6gg8Y2e5VTyxgBF4pnwMR",
-//   ssl: env.bool('DATABASE_SSL', false),
